@@ -1,25 +1,22 @@
 package transforming
 
-import Constants
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 
+
+
+
 fun main() {
-    flatmap()
+    concatMap()
     while (true) {}
 }
 
-/**
- * https://reactivex.io/documentation/operators/flatmap.html
- *  transform the items emitted by an Observable into Observables, then flatten the emissions from those into a single Observable
- */
-fun flatmap() {
+fun concatMap() {
     Observable.range(1, 15)
-        .flatMap {
+        .concatMap {
             Observable.just(it).delay(1, TimeUnit.MILLISECONDS)
         }
         .subscribe {
             println("concatMap = $it")
         }
-
 }
